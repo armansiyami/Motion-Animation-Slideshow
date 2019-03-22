@@ -278,64 +278,126 @@
             }).add('begin');
 
             // Animation Settings for slide change
-            this.tl
-                .set(currentImg, {transformOrigin: dir !== 'next' ? '100% 50%' : '0% 50%'})
-                .set(text, {opacity:0}, 'begin')
-                .set(upcomingTitle, {x: dir !== 'next' ? 600 : -600, y: 0, opacity: 0})
-                .to(currentImg, 0.3, {
-                    ease: Quad.easeOut,
-                    scaleX: 2,
-                    scaleY: 0.95,
-                    opacity: 0.5
-                }, 'begin')
-                .to(currentImg, 0.5, {
-                    ease: Expo.easeOut,
-                    x: dir !== 'next' ? -1 * winsize.width : winsize.width
-                }, 'begin+=0.2')
-                .to(currentTitle, 0.1, {
-                    ease: Quad.easeOut,
-                    x: dir !== 'next' ? 8 : -8,
-                    y: 2,
-                    repeat: 9
-                }, 'begin+=0.2')
+            if (dir === 'right') {
+                this.tl
+                    .set(currentImg, {transformOrigin: dir === 'next' ? '100% 50%' : '0% 50%'})
+                    .set(text, {opacity: 0}, 'begin')
+                    .set(upcomingTitle, {x: dir !== 'next' ? 600 : -600, y: 0, opacity: 0})
+                    .to(currentImg, 0.3, {
+                        ease: Quad.easeOut,
+                        scaleX: 2,
+                        scaleY: 0.95,
+                        opacity: 0.5
+                    }, 'begin')
+                    .to(currentImg, 0.5, {
+                        ease: Expo.easeOut,
+                        x: dir !== 'next' ? -1 * winsize.width : winsize.width,
+                        opacity: 0
+                    }, 'begin+=0.2')
+                    .to(currentTitle, 0.1, {
+                        ease: Quad.easeOut,
+                        x: dir !== 'next' ? 8 : -8,
+                        y: 2,
+                        repeat: 9
+                    }, 'begin+=0.2')
 
-                //Staggering Title Effect -  Change the animation speed or settings of the single letter transition effect
-                .staggerTo(currentTitleLetters.sort((a,b) => 0.5 - Math.random()), 0.2, {
-                    ease: Expo.easeOut,
-                    cycle: {
-                        x: () => dir !== 'next' ? getRandomNumber(-800, -400) : getRandomNumber(400, 800),
-                        y: () => getRandomNumber(-40, 40),
-                    },
-                    opacity: 0
-                }, 0.5/currentTitleLettersTotal, 'begin')
-                .set(upcomingImg, {
-                    transformOrigin: dir !== 'next' ? '0% 50%' : '100% 50%',
-                    x: dir !== 'next' ? winsize.width : -1 * winsize.width,
-                    scaleX: 1.5,
-                    scaleY: 0.8,
-                    opacity: 0.3
-                }, 'begin+=2.00')
-                .to(upcomingImg, 0.2, {
-                    ease: Expo.easeOut,
-                    x: 0
-                }, 'begin+=2.00')
-                .to(upcomingImg, 0.6, {
-                    ease: Elastic.easeOut.config(1, 0.7),
-                    scaleX: 1,
-                    scaleY: 1,
-                    opacity: 1
-                }, 'begin+=2.0')
-                .to(upcomingTitle, 0.6, {
-                    ease: Elastic.easeOut.config(1, 0.7),
-                    x: 0,
-                    opacity: 1
-                }, 'begin+=2.15')
-                .set(currentTitleLetters, {x: 0, y: 0, opacity: 1})
-                .set(upcomingText, {
-                    opacity:1,
-                    ease: Quint.easeOut
-                }, 'begin+=2.15');
+                    //Staggering Title Effect -  Change the animation speed or settings of the single letter transition effect
+                    .staggerTo(currentTitleLetters.sort((a, b) => 0.5 - Math.random()), 0.2, {
+                        ease: Expo.easeOut,
+                        cycle: {
+                            x: () => dir !== 'next' ? getRandomNumber(-800, -400) : getRandomNumber(400, 800),
+                            y: () => getRandomNumber(-40, 40),
+                        },
+                        opacity: 0
+                    }, 0.5 / currentTitleLettersTotal, 'begin')
+                    .set(upcomingImg, {
+                        transformOrigin: dir !== 'next' ? '0% 50%' : '100% 50%',
+                        x: dir !== 'next' ? winsize.width : -1 * winsize.width,
+                        scaleX: 1.5,
+                        scaleY: 0.8,
+                        opacity: 0.3
+                    }, 'begin+=2.00')
+                    .to(upcomingImg, 0.2, {
+                        ease: Expo.easeOut,
+                        x: 0
+                    }, 'begin+=2.00')
+                    .to(upcomingImg, 0.6, {
+                        ease: Elastic.easeOut.config(1, 0.7),
+                        scaleX: 1,
+                        scaleY: 1,
+                        opacity: 1
+                    }, 'begin+=2.0')
+                    .to(upcomingTitle, 0.6, {
+                        ease: Elastic.easeOut.config(1, 0.7),
+                        x: 0,
+                        opacity: 1
+                    }, 'begin+=2.15')
+                    .set(currentTitleLetters, {x: 0, y: 0, opacity: 1})
+                    .set(upcomingText, {
+                        opacity: 1,
+                        ease: Quint.easeOut
+                    }, 'begin+=2.15');
 
+            } else if (dir === 'left') {
+                this.tl
+                    .set(currentImg, {transformOrigin: dir === 'next' ? '100% 50%' : '0% 50%'})
+                    .set(text, {opacity: 0}, 'begin')
+                    .set(upcomingTitle, {x: dir === 'next' ? 600 : -600, y: 0, opacity: 0})
+                    .to(currentImg, 0.3, {
+                        ease: Quad.easeOut,
+                        scaleX: 2,
+                        scaleY: 0.95,
+                        opacity: 0.5
+                    }, 'begin')
+                    .to(currentImg, 0.5, {
+                        ease: Expo.easeOut,
+                        x: dir === 'next' ? -1 * winsize.width : winsize.width,
+                        opacity: 0
+                    }, 'begin+=0.2')
+                    .to(currentTitle, 0.1, {
+                        ease: Quad.easeOut,
+                        x: dir === 'next' ? 8 : -8,
+                        y: 2,
+                        repeat: 9
+                    }, 'begin+=0.2')
+
+                    //Staggering Title Effect -  Change the animation speed or settings of the single letter transition effect
+                    .staggerTo(currentTitleLetters.sort((a, b) => 0.5 - Math.random()), 0.2, {
+                        ease: Expo.easeOut,
+                        cycle: {
+                            x: () => dir === 'next' ? getRandomNumber(-800, -400) : getRandomNumber(400, 800),
+                            y: () => getRandomNumber(-40, 40),
+                        },
+                        opacity: 0
+                    }, 0.5 / currentTitleLettersTotal, 'begin')
+                    .set(upcomingImg, {
+                        transformOrigin: dir === 'next' ? '0% 50%' : '100% 50%',
+                        x: dir === 'next' ? winsize.width : -1 * winsize.width,
+                        scaleX: 1.5,
+                        scaleY: 0.8,
+                        opacity: 0.3
+                    }, 'begin+=2.00')
+                    .to(upcomingImg, 0.2, {
+                        ease: Expo.easeOut,
+                        x: 0
+                    }, 'begin+=2.00')
+                    .to(upcomingImg, 0.6, {
+                        ease: Elastic.easeOut.config(1, 0.7),
+                        scaleX: 1,
+                        scaleY: 1,
+                        opacity: 1
+                    }, 'begin+=2.0')
+                    .to(upcomingTitle, 0.6, {
+                        ease: Elastic.easeOut.config(1, 0.7),
+                        x: 0,
+                        opacity: 1
+                    }, 'begin+=2.15')
+                    .set(currentTitleLetters, {x: 0, y: 0, opacity: 1})
+                    .set(upcomingText, {
+                        opacity: 1,
+                        ease: Quint.easeOut
+                    }, 'begin+=2.15');
+            }
 
             //Sets current slide for Tilt Effect
             this.slides[this.current].setCurrent();
