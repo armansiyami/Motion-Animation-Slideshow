@@ -304,7 +304,7 @@
                         y: () => getRandomNumber(-40, 40),
                     },
                     opacity: 0
-                }, 0.5 / currentTitleLettersTotal, 'begin+=.6')
+                }, 0.5, 'begin+=.2')
                 .set(upcomingImg, {
                     transformOrigin: dir !== 'next' ? '0% 50%' : '100% 50%',
                     x: dir !== 'next' ? winsize.width : -1 * winsize.width,
