@@ -402,6 +402,107 @@ a:focus {
 	position: absolute;
 }
 
+
+.deco {
+	position: absolute;
+}
+
+.deco--bg {
+	overflow: hidden;
+	opacity: 0;
+	background-image: url(../img/noise1.png);
+	position: absolute;
+	height: 300%;
+	width: 300%;
+	left: -100%;
+	top: -100%;
+	animation-name: grained;
+	animation-iteration-count: infinite;
+	animation-duration: 0.5s;
+	animation-timing-function: steps(20, end);
+	transition: opacity 0.3s;
+}
+
+.deco--bg-vert {
+	background-image: url(../img/noise2.png);
+}
+
+@keyframes grained {
+	0% { transform: translate(-10%, 10%); }
+	10% { transform: translate(-25%, 0%); }
+	20% { transform: translate(-30%, 10%); }
+	30% { transform: translate(-30%, 30%); }
+	40% { transform: translate(0%,0%); }
+	50% { transform: translate(-15%, 10%); }
+	60% { transform: translate(-20%, 20%); }
+	70% { transform: translate(-5%, 20%); }
+	80% { transform: translate(-25%, 5%); }
+	90% { transform: translate(-30%, 25%); }
+	100% { transform: translate(-10%, 10%); }
+}
+
+.deco--shape {
+	opacity: 0;
+	background: var(--color-shape);
+	transform-origin: 50% 50%;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-duration: 0.15s;
+	animation-timing-function: linear;
+}
+
+.deco--shape-hor {
+	left: 0;
+	width: 100vw;
+	transform: scale3d(1,0.2,1);
+	animation-name: vibrateHorizontal;
+}
+
+.deco--shape-ver {
+	top: 0;
+	height: 100vw;
+	transform: scale3d(0.2,1,1);
+	animation-name: vibrateVertical;
+}
+
+.deco--shape-1 {
+	animation-delay: 0.05s;
+}
+
+@keyframes vibrateHorizontal {
+	0% { transform: scale3d(1,0.2,1); }
+	100% { transform: scale3d(1,1,1); }
+}
+
+@keyframes vibrateVertical {
+	0% { transform: scale3d(0.2,1,1); }
+	100% { transform: scale3d(1,1,1); }
+}
+
+.deco--shape-hor.deco--shape-1 {
+	bottom: 40vh;
+	height: 10vh;
+}
+
+.deco--shape-hor.deco--shape-2 {
+	bottom: 10vh;
+	height: 20vh;
+}
+
+.deco--shape-ver.deco--shape-1 {
+	width: 5vw;
+	left: 15vw;
+}
+
+.deco--shape-ver.deco--shape-2 {
+	width: 15vw;
+	left: 25vw;
+}
+
+.show-deco .deco {
+	opacity: 1;
+}
+
 @media screen and (min-width: 53em) {
 	*,
 	*::after,
